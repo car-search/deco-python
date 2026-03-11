@@ -1,7 +1,7 @@
 # Deco Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/deco.svg?label=pypi%20(stable))](https://pypi.org/project/deco/)
+[![PyPI version](https://img.shields.io/pypi/v/decod.svg?label=pypi%20(stable))](https://pypi.org/project/decod/)
 
 The Deco Python library provides convenient access to the Deco REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
@@ -16,12 +16,9 @@ The full API of this library can be found in [api.md](api.md).
 ## Installation
 
 ```sh
-# install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/deco-python.git
+# install from PyPI
+pip install decod
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install deco`
 
 ## Usage
 
@@ -77,8 +74,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from this staging repo
-pip install 'deco[aiohttp] @ git+ssh://git@github.com/stainless-sdks/deco-python.git'
+# install from PyPI
+pip install decod[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
@@ -250,9 +247,9 @@ process = response.parse()  # get the object that `process.retrieve()` would hav
 print(process)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/deco-python/tree/main/src/deco/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/car-search/deco-python/tree/main/src/deco/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/deco-python/tree/main/src/deco/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/car-search/deco-python/tree/main/src/deco/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -358,7 +355,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/deco-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/car-search/deco-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
