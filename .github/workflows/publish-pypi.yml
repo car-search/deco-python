@@ -13,6 +13,9 @@ jobs:
     name: publish
     runs-on: ubuntu-latest
 
+    permissions:
+      id-token: write
+
     steps:
       - uses: actions/checkout@v6
 
@@ -22,7 +25,4 @@ jobs:
           version: '0.9.13'
 
       - name: Publish to PyPI
-        run: |
-          bash ./bin/publish-pypi
-        env:
-          PYPI_TOKEN: ${{ secrets.DECO_PYPI_TOKEN || secrets.PYPI_TOKEN }}
+        uses: pypa/gh-action-pypi-publish@release/v1
