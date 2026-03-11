@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.4 (2026-03-11)
+
+Full Changelog: [v0.0.3...v0.0.4](https://github.com/car-search/deco-python/compare/v0.0.3...v0.0.4)
+
+### Chores
+
+* update SDK settings ([1cdbf4b](https://github.com/car-search/deco-python/commit/1cdbf4b4bb520c089ea1c0abb9e251f761e654c8))
+* update SDK settings ([ce4bca5](https://github.com/car-search/deco-python/commit/ce4bca5534ba6357ce88423d3939b190557a70ca))
+
 ## 0.0.3 (2026-03-11)
 
 Full Changelog: [v0.0.2...v0.0.3](https://github.com/car-search/deco-python/compare/v0.0.2...v0.0.3)
