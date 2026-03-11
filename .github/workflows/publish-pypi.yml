@@ -24,6 +24,8 @@ jobs:
         with:
           version: '0.9.13'
 
+      - name: Build package
+        run: uv build
+
       - name: Publish to PyPI
-        run: |
-          bash ./bin/publish-pypi
+        uses: pypa/gh-action-pypi-publish@release/v1
