@@ -855,7 +855,7 @@ class TestDeco:
         respx_mock.get("/process/0").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.process.with_streaming_response.retrieve(0).__enter__()
+            client.process.with_streaming_response.retrieve_user_request(0).__enter__()
 
         assert _get_open_connections(client) == 0
 
@@ -865,7 +865,7 @@ class TestDeco:
         respx_mock.get("/process/0").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.process.with_streaming_response.retrieve(0).__enter__()
+            client.process.with_streaming_response.retrieve_user_request(0).__enter__()
         assert _get_open_connections(client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -894,7 +894,7 @@ class TestDeco:
 
         respx_mock.get("/process/0").mock(side_effect=retry_handler)
 
-        response = client.process.with_raw_response.retrieve(0)
+        response = client.process.with_raw_response.retrieve_user_request(0)
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -916,7 +916,9 @@ class TestDeco:
 
         respx_mock.get("/process/0").mock(side_effect=retry_handler)
 
-        response = client.process.with_raw_response.retrieve(0, extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.process.with_raw_response.retrieve_user_request(
+            0, extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -939,7 +941,9 @@ class TestDeco:
 
         respx_mock.get("/process/0").mock(side_effect=retry_handler)
 
-        response = client.process.with_raw_response.retrieve(0, extra_headers={"x-stainless-retry-count": "42"})
+        response = client.process.with_raw_response.retrieve_user_request(
+            0, extra_headers={"x-stainless-retry-count": "42"}
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1758,7 +1762,7 @@ class TestAsyncDeco:
         respx_mock.get("/process/0").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.process.with_streaming_response.retrieve(0).__aenter__()
+            await async_client.process.with_streaming_response.retrieve_user_request(0).__aenter__()
 
         assert _get_open_connections(async_client) == 0
 
@@ -1768,7 +1772,7 @@ class TestAsyncDeco:
         respx_mock.get("/process/0").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.process.with_streaming_response.retrieve(0).__aenter__()
+            await async_client.process.with_streaming_response.retrieve_user_request(0).__aenter__()
         assert _get_open_connections(async_client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1797,7 +1801,7 @@ class TestAsyncDeco:
 
         respx_mock.get("/process/0").mock(side_effect=retry_handler)
 
-        response = await client.process.with_raw_response.retrieve(0)
+        response = await client.process.with_raw_response.retrieve_user_request(0)
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1821,7 +1825,9 @@ class TestAsyncDeco:
 
         respx_mock.get("/process/0").mock(side_effect=retry_handler)
 
-        response = await client.process.with_raw_response.retrieve(0, extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.process.with_raw_response.retrieve_user_request(
+            0, extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1844,7 +1850,9 @@ class TestAsyncDeco:
 
         respx_mock.get("/process/0").mock(side_effect=retry_handler)
 
-        response = await client.process.with_raw_response.retrieve(0, extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.process.with_raw_response.retrieve_user_request(
+            0, extra_headers={"x-stainless-retry-count": "42"}
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 

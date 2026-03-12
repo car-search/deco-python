@@ -18,16 +18,16 @@ class TestProcess:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: Deco) -> None:
-        process = client.process.retrieve(
+    def test_method_retrieve_user_request(self, client: Deco) -> None:
+        process = client.process.retrieve_user_request(
             0,
         )
         assert_matches_type(object, process, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: Deco) -> None:
-        response = client.process.with_raw_response.retrieve(
+    def test_raw_response_retrieve_user_request(self, client: Deco) -> None:
+        response = client.process.with_raw_response.retrieve_user_request(
             0,
         )
 
@@ -38,8 +38,8 @@ class TestProcess:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: Deco) -> None:
-        with client.process.with_streaming_response.retrieve(
+    def test_streaming_response_retrieve_user_request(self, client: Deco) -> None:
+        with client.process.with_streaming_response.retrieve_user_request(
             0,
         ) as response:
             assert not response.is_closed
@@ -58,16 +58,16 @@ class TestAsyncProcess:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncDeco) -> None:
-        process = await async_client.process.retrieve(
+    async def test_method_retrieve_user_request(self, async_client: AsyncDeco) -> None:
+        process = await async_client.process.retrieve_user_request(
             0,
         )
         assert_matches_type(object, process, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncDeco) -> None:
-        response = await async_client.process.with_raw_response.retrieve(
+    async def test_raw_response_retrieve_user_request(self, async_client: AsyncDeco) -> None:
+        response = await async_client.process.with_raw_response.retrieve_user_request(
             0,
         )
 
@@ -78,8 +78,8 @@ class TestAsyncProcess:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncDeco) -> None:
-        async with async_client.process.with_streaming_response.retrieve(
+    async def test_streaming_response_retrieve_user_request(self, async_client: AsyncDeco) -> None:
+        async with async_client.process.with_streaming_response.retrieve_user_request(
             0,
         ) as response:
             assert not response.is_closed
