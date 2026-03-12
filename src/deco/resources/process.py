@@ -38,7 +38,7 @@ class ProcessResource(SyncAPIResource):
         """
         return ProcessResourceWithStreamingResponse(self)
 
-    def retrieve(
+    def retrieve_user_request(
         self,
         user_id: int,
         *,
@@ -124,7 +124,7 @@ class AsyncProcessResource(AsyncAPIResource):
         """
         return AsyncProcessResourceWithStreamingResponse(self)
 
-    async def retrieve(
+    async def retrieve_user_request(
         self,
         user_id: int,
         *,
@@ -194,11 +194,8 @@ class ProcessResourceWithRawResponse:
     def __init__(self, process: ProcessResource) -> None:
         self._process = process
 
-        self.retrieve = to_raw_response_wrapper(
-            process.retrieve,
-        )
-        self.retrieve_anthropic = to_raw_response_wrapper(
-            process.retrieve_anthropic,
+        self.retrieve_user_request = to_raw_response_wrapper(
+            process.retrieve_user_request,
         )
 
 
@@ -206,11 +203,8 @@ class AsyncProcessResourceWithRawResponse:
     def __init__(self, process: AsyncProcessResource) -> None:
         self._process = process
 
-        self.retrieve = async_to_raw_response_wrapper(
-            process.retrieve,
-        )
-        self.retrieve_anthropic = async_to_raw_response_wrapper(
-            process.retrieve_anthropic,
+        self.retrieve_user_request = async_to_raw_response_wrapper(
+            process.retrieve_user_request,
         )
 
 
@@ -218,11 +212,8 @@ class ProcessResourceWithStreamingResponse:
     def __init__(self, process: ProcessResource) -> None:
         self._process = process
 
-        self.retrieve = to_streamed_response_wrapper(
-            process.retrieve,
-        )
-        self.retrieve_anthropic = to_streamed_response_wrapper(
-            process.retrieve_anthropic,
+        self.retrieve_user_request = to_streamed_response_wrapper(
+            process.retrieve_user_request,
         )
 
 
@@ -230,9 +221,6 @@ class AsyncProcessResourceWithStreamingResponse:
     def __init__(self, process: AsyncProcessResource) -> None:
         self._process = process
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            process.retrieve,
-        )
-        self.retrieve_anthropic = async_to_streamed_response_wrapper(
-            process.retrieve_anthropic,
+        self.retrieve_user_request = async_to_streamed_response_wrapper(
+            process.retrieve_user_request,
         )

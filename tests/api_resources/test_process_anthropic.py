@@ -13,79 +13,79 @@ from tests.utils import assert_matches_type
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestProcess:
+class TestProcessAnthropic:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_user_request(self, client: Deco) -> None:
-        process = client.process.retrieve_user_request(
+    def test_method_retrieve(self, client: Deco) -> None:
+        process_anthropic = client.process_anthropic.retrieve(
             0,
         )
-        assert_matches_type(object, process, path=["response"])
+        assert_matches_type(object, process_anthropic, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve_user_request(self, client: Deco) -> None:
-        response = client.process.with_raw_response.retrieve_user_request(
+    def test_raw_response_retrieve(self, client: Deco) -> None:
+        response = client.process_anthropic.with_raw_response.retrieve(
             0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        process = response.parse()
-        assert_matches_type(object, process, path=["response"])
+        process_anthropic = response.parse()
+        assert_matches_type(object, process_anthropic, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve_user_request(self, client: Deco) -> None:
-        with client.process.with_streaming_response.retrieve_user_request(
+    def test_streaming_response_retrieve(self, client: Deco) -> None:
+        with client.process_anthropic.with_streaming_response.retrieve(
             0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            process = response.parse()
-            assert_matches_type(object, process, path=["response"])
+            process_anthropic = response.parse()
+            assert_matches_type(object, process_anthropic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncProcess:
+class TestAsyncProcessAnthropic:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_user_request(self, async_client: AsyncDeco) -> None:
-        process = await async_client.process.retrieve_user_request(
+    async def test_method_retrieve(self, async_client: AsyncDeco) -> None:
+        process_anthropic = await async_client.process_anthropic.retrieve(
             0,
         )
-        assert_matches_type(object, process, path=["response"])
+        assert_matches_type(object, process_anthropic, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve_user_request(self, async_client: AsyncDeco) -> None:
-        response = await async_client.process.with_raw_response.retrieve_user_request(
+    async def test_raw_response_retrieve(self, async_client: AsyncDeco) -> None:
+        response = await async_client.process_anthropic.with_raw_response.retrieve(
             0,
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        process = await response.parse()
-        assert_matches_type(object, process, path=["response"])
+        process_anthropic = await response.parse()
+        assert_matches_type(object, process_anthropic, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve_user_request(self, async_client: AsyncDeco) -> None:
-        async with async_client.process.with_streaming_response.retrieve_user_request(
+    async def test_streaming_response_retrieve(self, async_client: AsyncDeco) -> None:
+        async with async_client.process_anthropic.with_streaming_response.retrieve(
             0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            process = await response.parse()
-            assert_matches_type(object, process, path=["response"])
+            process_anthropic = await response.parse()
+            assert_matches_type(object, process_anthropic, path=["response"])
 
         assert cast(Any, response.is_closed) is True
