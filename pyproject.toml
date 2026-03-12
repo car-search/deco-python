@@ -4,36 +4,42 @@ version = "0.2.0"
 description = "The official Python library for the deco API"
 dynamic = ["readme"]
 license = "Apache-2.0"
-authors = [
-{ name = "Deco", email = "" },
-]
+authors = [{ name = "Deco", email = "" }]
 
 dependencies = [
-  "httpx>=0.23.0, <1",
-  "pydantic>=1.9.0, <3",
-  "typing-extensions>=4.10, <5",
-  "anyio>=3.5.0, <5",
-  "distro>=1.7.0, <2",
-  "sniffio",
+    "httpx>=0.23.0, <1",
+    "pydantic>=1.9.0, <3",
+    "typing-extensions>=4.10, <5",
+    "anyio>=3.5.0, <5",
+    "distro>=1.7.0, <2",
+    "sniffio",
+    "opentelemetry-api==1.40.0",
+    "opentelemetry-sdk==1.40.0",
+    "opentelemetry-instrumentation==0.61b0",
+    "opentelemetry-instrumentation-anthropic==0.53.0",
+    "opentelemetry-instrumentation-openai==0.52.6",
+    "opentelemetry-semantic-conventions==0.61b0",
+    "opentelemetry-semantic-conventions-ai==0.4.14",
+    "wrapt==1.17.3",
 ]
 
 requires-python = ">= 3.9"
 classifiers = [
-  "Typing :: Typed",
-  "Intended Audience :: Developers",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
-  "Operating System :: OS Independent",
-  "Operating System :: POSIX",
-  "Operating System :: MacOS",
-  "Operating System :: POSIX :: Linux",
-  "Operating System :: Microsoft :: Windows",
-  "Topic :: Software Development :: Libraries :: Python Modules",
-  "License :: OSI Approved :: Apache Software License"
+    "Typing :: Typed",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "Operating System :: POSIX",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: Apache Software License",
 ]
 
 [project.urls]
@@ -46,12 +52,7 @@ aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
 [tool.uv]
 managed = true
 required-version = ">=0.9"
-conflicts = [
-    [
-      { group = "pydantic-v1" },
-      { group = "pydantic-v2" },
-    ],
-]
+conflicts = [[{ group = "pydantic-v1" }, { group = "pydantic-v2" }]]
 
 [dependency-groups]
 # version pins are in uv.lock
@@ -68,9 +69,7 @@ dev = [
     "rich>=13.7.1",
     "pytest-xdist>=3.6.1",
 ]
-pydantic-v1 = [
-    "pydantic>=1.9.0,<2",
-]
+pydantic-v1 = ["pydantic>=1.9.0,<2"]
 pydantic-v2 = [
     "pydantic~=2.0 ; python_full_version < '3.14'",
     "pydantic~=2.12 ; python_full_version >= '3.14'",
@@ -81,9 +80,7 @@ requires = ["hatchling==1.26.3", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]
-include = [
-  "src/*"
-]
+include = ["src/*"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/deco"]
@@ -91,16 +88,16 @@ packages = ["src/deco"]
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
 include = [
-  "/*.toml",
-  "/*.json",
-  "/*.lock",
-  "/*.md",
-  "/mypy.ini",
-  "/noxfile.py",
-  "bin/*",
-  "examples/*",
-  "src/*",
-  "tests/*",
+    "/*.toml",
+    "/*.json",
+    "/*.lock",
+    "/*.md",
+    "/mypy.ini",
+    "/noxfile.py",
+    "bin/*",
+    "examples/*",
+    "src/*",
+    "tests/*",
 ]
 
 [tool.hatch.metadata.hooks.fancy-pypi-readme]
@@ -120,9 +117,7 @@ addopts = "--tb=short -n auto"
 xfail_strict = true
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
-filterwarnings = [
-  "error"
-]
+filterwarnings = ["error"]
 
 [tool.pyright]
 # this enables practically every flag given by pyright.
@@ -131,12 +126,7 @@ filterwarnings = [
 typeCheckingMode = "strict"
 pythonVersion = "3.9"
 
-exclude = [
-    "_dev",
-    ".venv",
-    ".nox",
-    ".git",
-]
+exclude = ["_dev", ".venv", ".nox", ".git"]
 
 reportImplicitOverride = true
 reportOverlappingOverload = false
@@ -206,34 +196,34 @@ docstring-code-format = true
 
 [tool.ruff.lint]
 select = [
-  # isort
-  "I",
-  # bugbear rules
-  "B",
-  # remove unused imports
-  "F401",
-  # check for missing future annotations
-  "FA102",
-  # bare except statements
-  "E722",
-  # unused arguments
-  "ARG",
-  # print statements
-  "T201",
-  "T203",
-  # misuse of typing.TYPE_CHECKING
-  "TC004",
-  # import rules
-  "TID251",
+    # isort
+    "I",
+    # bugbear rules
+    "B",
+    # remove unused imports
+    "F401",
+    # check for missing future annotations
+    "FA102",
+    # bare except statements
+    "E722",
+    # unused arguments
+    "ARG",
+    # print statements
+    "T201",
+    "T203",
+    # misuse of typing.TYPE_CHECKING
+    "TC004",
+    # import rules
+    "TID251",
 ]
 ignore = [
-  # mutable defaults
-  "B006",
+    # mutable defaults
+    "B006",
 ]
 unfixable = [
-  # disable auto fix for print statements
-  "T201",
-  "T203",
+    # disable auto fix for print statements
+    "T201",
+    "T203",
 ]
 
 extend-safe-fixes = ["FA102"]
