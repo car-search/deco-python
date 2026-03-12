@@ -19,7 +19,7 @@ dependencies = [
     "opentelemetry-instrumentation-anthropic==0.53.0",
     "opentelemetry-instrumentation-openai==0.52.6",
     "opentelemetry-semantic-conventions==0.61b0",
-    "opentelemetry-semantic-conventions-ai==0.4.14",
+    "opentelemetry-semantic-conventions-ai==0.4.15",
     "wrapt==1.17.3",
 ]
 
