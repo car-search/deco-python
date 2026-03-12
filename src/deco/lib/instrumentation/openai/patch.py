@@ -1,11 +1,13 @@
-from opentelemetry.semconv._incubating.attributes import gen_ai_attributes as GenAIAttributes
-from src.amint.semconv import amint_gen_ai_attributes as AmintGenAIAttributes
-from .utils import process_response
-
 import json
 
+from src.amint.semconv import amint_gen_ai_attributes as AmintGenAIAttributes
+from opentelemetry.semconv._incubating.attributes import gen_ai_attributes as GenAIAttributes
+
+from .utils import process_response
+
+
 def responses_create(tracer):
-    def traced_method(wrapped, instance, args, kwargs):
+    def traced_method(wrapped, args, kwargs):
 
         span_name = f"openai.responses"
 

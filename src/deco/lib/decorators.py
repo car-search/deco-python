@@ -1,7 +1,8 @@
-import wrapt
 import inspect
+from typing import Callable, Optional
 
-from typing import Optional, Callable
+import wrapt
+
 from .trace import telemetry
 
 
@@ -18,13 +19,13 @@ def _create_decorator(span_kind: str):
             span_name = name if isinstance(name, str) else func.__name__
 
             @wrapt.decorator
-            async def async_wrapper(wrapped, instance, args, kwargs):
+            async def async_wrapper(wrapped, args, kwargs):
                 with tracer.start_as_current_span(span_name) as span:
                     _set_span_metadata(span, span_kind, span_name)
                     return await wrapped(*args, **kwargs)
 
             @wrapt.decorator
-            def sync_wrapper(wrapped, instance, args, kwargs):
+            def sync_wrapper(wrapped, args, kwargs):
                 with tracer.start_as_current_span(span_name) as span:
                     _set_span_metadata(span, span_kind, span_name)
                     return wrapped(*args, **kwargs)

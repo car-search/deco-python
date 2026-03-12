@@ -1,15 +1,13 @@
-import sys
-import os
 import atexit
-
-from .instrumentation.openai.instrumentor import OpenAIInstrumentor
-from .instrumentation.anthropic.instrumentor import AnthropicInstrumentor
 
 from opentelemetry import trace
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.resources import Resource
-from opentelemetry.sdk.trace.export import SimpleSpanProcessor, ConsoleSpanExporter, BatchSpanProcessor
+from opentelemetry.sdk.trace.export import SimpleSpanProcessor
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+
+from .instrumentation.openai.instrumentor import OpenAIInstrumentor
+from .instrumentation.anthropic.instrumentor import AnthropicInstrumentor
 
 
 def get_resource():
@@ -55,7 +53,7 @@ class TracerWrapper:
     _instance = None
     _provider = None
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
             cls._provider = init_tracer_provider()

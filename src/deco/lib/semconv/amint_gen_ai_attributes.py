@@ -1,6 +1,5 @@
 from typing import Final
 
-
 GEN_AI_REQUEST_INPUT: Final = "gen_ai.request.input"
 
 GEN_AI_REQUEST_REASONING_EFFORT: Final = "gen_ai.request.reasoning.effort"

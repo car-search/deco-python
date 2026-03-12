@@ -69,9 +69,6 @@ class ProcessResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def say_hello(self) -> None:
-        print("hello world")
-
 
 class AsyncProcessResource(AsyncAPIResource):
     @cached_property
@@ -123,9 +120,6 @@ class AsyncProcessResource(AsyncAPIResource):
             ),
             cast_to=object,
         )
-
-    async def say_hello(self) -> None:
-        print("hello world")
 
 
 class ProcessResourceWithRawResponse:

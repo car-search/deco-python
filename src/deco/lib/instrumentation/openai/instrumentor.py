@@ -1,9 +1,9 @@
 from typing import Collection
-from wrapt import wrap_function_wrapper
 
+from wrapt import wrap_function_wrapper
 from opentelemetry.trace import get_tracer
-from opentelemetry.instrumentation.instrumentor import BaseInstrumentor
 from opentelemetry.instrumentation.utils import unwrap
+from opentelemetry.instrumentation.instrumentor import BaseInstrumentor
 
 from .patch import *
 

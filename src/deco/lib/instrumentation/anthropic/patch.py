@@ -1,11 +1,13 @@
-from opentelemetry.semconv._incubating.attributes import gen_ai_attributes as GenAIAttributes
-from ...semconv import amint_gen_ai_attributes as AmintGenAIAttributes
-from .utils import process_response
-
 import json
 
+from opentelemetry.semconv._incubating.attributes import gen_ai_attributes as GenAIAttributes
+
+from .utils import process_response
+from ...semconv import amint_gen_ai_attributes as AmintGenAIAttributes
+
+
 def messages_create(tracer):
-    def traced_method(wrapped, instance, args, kwargs):
+    def traced_method(wrapped, args, kwargs):
 
         span_name = f"anthropic.messages"
 

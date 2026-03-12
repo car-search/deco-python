@@ -1,7 +1,7 @@
-from opentelemetry.semconv._incubating.attributes import gen_ai_attributes as GenAIAttributes
-from src.amint.semconv import amint_gen_ai_attributes as AmintGenAIAttributes
-
 import json
+
+from src.amint.semconv import amint_gen_ai_attributes as AmintGenAIAttributes
+from opentelemetry.semconv._incubating.attributes import gen_ai_attributes as GenAIAttributes
 
 
 def process_response(span, response):
