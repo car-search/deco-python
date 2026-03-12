@@ -34,7 +34,7 @@ from ._base_client import (
 
 if TYPE_CHECKING:
     from .resources import process
-    from .resources.process import ProcessResource, AsyncProcessResource
+    from .resources.process.process import ProcessResource, AsyncProcessResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Deco", "AsyncDeco", "Client", "AsyncClient"]
 

@@ -4,21 +4,33 @@ from __future__ import annotations
 
 import httpx
 
-from .._types import Body, Query, Headers, NotGiven, not_given
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._compat import cached_property
+from .anthropic import (
+    AnthropicResource,
+    AsyncAnthropicResource,
+    AnthropicResourceWithRawResponse,
+    AsyncAnthropicResourceWithRawResponse,
+    AnthropicResourceWithStreamingResponse,
+    AsyncAnthropicResourceWithStreamingResponse,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import make_request_options
+from ..._base_client import make_request_options
 
 __all__ = ["ProcessResource", "AsyncProcessResource"]
 
 
 class ProcessResource(SyncAPIResource):
+    @cached_property
+    def anthropic(self) -> AnthropicResource:
+        return AnthropicResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> ProcessResourceWithRawResponse:
         """
@@ -69,39 +81,12 @@ class ProcessResource(SyncAPIResource):
             cast_to=object,
         )
 
-    def retrieve_anthropic(
-        self,
-        user_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """
-        Handle User Anthropic Request
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            f"/process_anthropic/{user_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
 
 class AsyncProcessResource(AsyncAPIResource):
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResource:
+        return AsyncAnthropicResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncProcessResourceWithRawResponse:
         """
@@ -152,37 +137,6 @@ class AsyncProcessResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def retrieve_anthropic(
-        self,
-        user_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
-        """
-        Handle User Anthropic Request
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            f"/process_anthropic/{user_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=object,
-        )
-
 
 class ProcessResourceWithRawResponse:
     def __init__(self, process: ProcessResource) -> None:
@@ -191,9 +145,10 @@ class ProcessResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             process.retrieve,
         )
-        self.retrieve_anthropic = to_raw_response_wrapper(
-            process.retrieve_anthropic,
-        )
+
+    @cached_property
+    def anthropic(self) -> AnthropicResourceWithRawResponse:
+        return AnthropicResourceWithRawResponse(self._process.anthropic)
 
 
 class AsyncProcessResourceWithRawResponse:
@@ -203,9 +158,10 @@ class AsyncProcessResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             process.retrieve,
         )
-        self.retrieve_anthropic = async_to_raw_response_wrapper(
-            process.retrieve_anthropic,
-        )
+
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResourceWithRawResponse:
+        return AsyncAnthropicResourceWithRawResponse(self._process.anthropic)
 
 
 class ProcessResourceWithStreamingResponse:
@@ -215,9 +171,10 @@ class ProcessResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             process.retrieve,
         )
-        self.retrieve_anthropic = to_streamed_response_wrapper(
-            process.retrieve_anthropic,
-        )
+
+    @cached_property
+    def anthropic(self) -> AnthropicResourceWithStreamingResponse:
+        return AnthropicResourceWithStreamingResponse(self._process.anthropic)
 
 
 class AsyncProcessResourceWithStreamingResponse:
@@ -227,6 +184,7 @@ class AsyncProcessResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             process.retrieve,
         )
-        self.retrieve_anthropic = async_to_streamed_response_wrapper(
-            process.retrieve_anthropic,
-        )
+
+    @cached_property
+    def anthropic(self) -> AsyncAnthropicResourceWithStreamingResponse:
+        return AsyncAnthropicResourceWithStreamingResponse(self._process.anthropic)
