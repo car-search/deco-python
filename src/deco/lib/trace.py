@@ -60,7 +60,6 @@ class TracerWrapper:
             init_instrumentations()
 
             atexit.register(cls._instance.shutdown)
-            print("Telemetry system online.")
 
         return cls._instance
 
