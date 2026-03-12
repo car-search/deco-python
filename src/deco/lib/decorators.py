@@ -1,6 +1,6 @@
-import functools
 import logging
-from typing import Callable, TypeVar, ParamSpec
+import functools
+from typing import TypeVar, Callable, ParamSpec
 
 # Create a logger specific to your SDK
 logger = logging.getLogger("my_sdk")
