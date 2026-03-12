@@ -8,6 +8,14 @@ from .process import (
     ProcessResourceWithStreamingResponse,
     AsyncProcessResourceWithStreamingResponse,
 )
+from .process_anthropic import (
+    ProcessAnthropicResource,
+    AsyncProcessAnthropicResource,
+    ProcessAnthropicResourceWithRawResponse,
+    AsyncProcessAnthropicResourceWithRawResponse,
+    ProcessAnthropicResourceWithStreamingResponse,
+    AsyncProcessAnthropicResourceWithStreamingResponse,
+)
 
 __all__ = [
     "ProcessResource",
@@ -16,4 +24,10 @@ __all__ = [
     "AsyncProcessResourceWithRawResponse",
     "ProcessResourceWithStreamingResponse",
     "AsyncProcessResourceWithStreamingResponse",
+    "ProcessAnthropicResource",
+    "AsyncProcessAnthropicResource",
+    "ProcessAnthropicResourceWithRawResponse",
+    "AsyncProcessAnthropicResourceWithRawResponse",
+    "ProcessAnthropicResourceWithStreamingResponse",
+    "AsyncProcessAnthropicResourceWithStreamingResponse",
 ]

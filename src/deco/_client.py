@@ -33,8 +33,9 @@ from ._base_client import (
 )
 
 if TYPE_CHECKING:
-    from .resources import process
-    from .resources.process.process import ProcessResource, AsyncProcessResource
+    from .resources import process, process_anthropic
+    from .resources.process import ProcessResource, AsyncProcessResource
+    from .resources.process_anthropic import ProcessAnthropicResource, AsyncProcessAnthropicResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Deco", "AsyncDeco", "Client", "AsyncClient"]
 
@@ -95,6 +96,12 @@ class Deco(SyncAPIClient):
         from .resources.process import ProcessResource
 
         return ProcessResource(self)
+
+    @cached_property
+    def process_anthropic(self) -> ProcessAnthropicResource:
+        from .resources.process_anthropic import ProcessAnthropicResource
+
+        return ProcessAnthropicResource(self)
 
     @cached_property
     def with_raw_response(self) -> DecoWithRawResponse:
@@ -283,6 +290,12 @@ class AsyncDeco(AsyncAPIClient):
         return AsyncProcessResource(self)
 
     @cached_property
+    def process_anthropic(self) -> AsyncProcessAnthropicResource:
+        from .resources.process_anthropic import AsyncProcessAnthropicResource
+
+        return AsyncProcessAnthropicResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncDecoWithRawResponse:
         return AsyncDecoWithRawResponse(self)
 
@@ -423,6 +436,12 @@ class DecoWithRawResponse:
 
         return ProcessResourceWithRawResponse(self._client.process)
 
+    @cached_property
+    def process_anthropic(self) -> process_anthropic.ProcessAnthropicResourceWithRawResponse:
+        from .resources.process_anthropic import ProcessAnthropicResourceWithRawResponse
+
+        return ProcessAnthropicResourceWithRawResponse(self._client.process_anthropic)
+
 
 class AsyncDecoWithRawResponse:
     _client: AsyncDeco
@@ -435,6 +454,12 @@ class AsyncDecoWithRawResponse:
         from .resources.process import AsyncProcessResourceWithRawResponse
 
         return AsyncProcessResourceWithRawResponse(self._client.process)
+
+    @cached_property
+    def process_anthropic(self) -> process_anthropic.AsyncProcessAnthropicResourceWithRawResponse:
+        from .resources.process_anthropic import AsyncProcessAnthropicResourceWithRawResponse
+
+        return AsyncProcessAnthropicResourceWithRawResponse(self._client.process_anthropic)
 
 
 class DecoWithStreamedResponse:
@@ -449,6 +474,12 @@ class DecoWithStreamedResponse:
 
         return ProcessResourceWithStreamingResponse(self._client.process)
 
+    @cached_property
+    def process_anthropic(self) -> process_anthropic.ProcessAnthropicResourceWithStreamingResponse:
+        from .resources.process_anthropic import ProcessAnthropicResourceWithStreamingResponse
+
+        return ProcessAnthropicResourceWithStreamingResponse(self._client.process_anthropic)
+
 
 class AsyncDecoWithStreamedResponse:
     _client: AsyncDeco
@@ -461,6 +492,12 @@ class AsyncDecoWithStreamedResponse:
         from .resources.process import AsyncProcessResourceWithStreamingResponse
 
         return AsyncProcessResourceWithStreamingResponse(self._client.process)
+
+    @cached_property
+    def process_anthropic(self) -> process_anthropic.AsyncProcessAnthropicResourceWithStreamingResponse:
+        from .resources.process_anthropic import AsyncProcessAnthropicResourceWithStreamingResponse
+
+        return AsyncProcessAnthropicResourceWithStreamingResponse(self._client.process_anthropic)
 
 
 Client = Deco

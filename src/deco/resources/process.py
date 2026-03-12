@@ -4,41 +4,41 @@ from __future__ import annotations
 
 import httpx
 
-from ..._types import Body, Query, Headers, NotGiven, not_given
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .._types import Body, Query, Headers, NotGiven, not_given
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from .._base_client import make_request_options
 
-__all__ = ["AnthropicResource", "AsyncAnthropicResource"]
+__all__ = ["ProcessResource", "AsyncProcessResource"]
 
 
-class AnthropicResource(SyncAPIResource):
+class ProcessResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AnthropicResourceWithRawResponse:
+    def with_raw_response(self) -> ProcessResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/car-search/deco-python#accessing-raw-response-data-eg-headers
         """
-        return AnthropicResourceWithRawResponse(self)
+        return ProcessResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AnthropicResourceWithStreamingResponse:
+    def with_streaming_response(self) -> ProcessResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/car-search/deco-python#with_streaming_response
         """
-        return AnthropicResourceWithStreamingResponse(self)
+        return ProcessResourceWithStreamingResponse(self)
 
-    def retrieve(
+    def retrieve_user_request(
         self,
         user_id: int,
         *,
@@ -50,7 +50,7 @@ class AnthropicResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Handle User Anthropic Request
+        Handle User Request
 
         Args:
           extra_headers: Send extra headers
@@ -62,7 +62,7 @@ class AnthropicResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return self._get(
-            f"/process_anthropic/{user_id}",
+            f"/process/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -70,27 +70,27 @@ class AnthropicResource(SyncAPIResource):
         )
 
 
-class AsyncAnthropicResource(AsyncAPIResource):
+class AsyncProcessResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncAnthropicResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncProcessResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/car-search/deco-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncAnthropicResourceWithRawResponse(self)
+        return AsyncProcessResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAnthropicResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncProcessResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/car-search/deco-python#with_streaming_response
         """
-        return AsyncAnthropicResourceWithStreamingResponse(self)
+        return AsyncProcessResourceWithStreamingResponse(self)
 
-    async def retrieve(
+    async def retrieve_user_request(
         self,
         user_id: int,
         *,
@@ -102,7 +102,7 @@ class AsyncAnthropicResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> object:
         """
-        Handle User Anthropic Request
+        Handle User Request
 
         Args:
           extra_headers: Send extra headers
@@ -114,7 +114,7 @@ class AsyncAnthropicResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         return await self._get(
-            f"/process_anthropic/{user_id}",
+            f"/process/{user_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -122,37 +122,37 @@ class AsyncAnthropicResource(AsyncAPIResource):
         )
 
 
-class AnthropicResourceWithRawResponse:
-    def __init__(self, anthropic: AnthropicResource) -> None:
-        self._anthropic = anthropic
+class ProcessResourceWithRawResponse:
+    def __init__(self, process: ProcessResource) -> None:
+        self._process = process
 
-        self.retrieve = to_raw_response_wrapper(
-            anthropic.retrieve,
+        self.retrieve_user_request = to_raw_response_wrapper(
+            process.retrieve_user_request,
         )
 
 
-class AsyncAnthropicResourceWithRawResponse:
-    def __init__(self, anthropic: AsyncAnthropicResource) -> None:
-        self._anthropic = anthropic
+class AsyncProcessResourceWithRawResponse:
+    def __init__(self, process: AsyncProcessResource) -> None:
+        self._process = process
 
-        self.retrieve = async_to_raw_response_wrapper(
-            anthropic.retrieve,
+        self.retrieve_user_request = async_to_raw_response_wrapper(
+            process.retrieve_user_request,
         )
 
 
-class AnthropicResourceWithStreamingResponse:
-    def __init__(self, anthropic: AnthropicResource) -> None:
-        self._anthropic = anthropic
+class ProcessResourceWithStreamingResponse:
+    def __init__(self, process: ProcessResource) -> None:
+        self._process = process
 
-        self.retrieve = to_streamed_response_wrapper(
-            anthropic.retrieve,
+        self.retrieve_user_request = to_streamed_response_wrapper(
+            process.retrieve_user_request,
         )
 
 
-class AsyncAnthropicResourceWithStreamingResponse:
-    def __init__(self, anthropic: AsyncAnthropicResource) -> None:
-        self._anthropic = anthropic
+class AsyncProcessResourceWithStreamingResponse:
+    def __init__(self, process: AsyncProcessResource) -> None:
+        self._process = process
 
-        self.retrieve = async_to_streamed_response_wrapper(
-            anthropic.retrieve,
+        self.retrieve_user_request = async_to_streamed_response_wrapper(
+            process.retrieve_user_request,
         )
