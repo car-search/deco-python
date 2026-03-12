@@ -1,44 +1,21 @@
-import inspect
-from typing import Callable, Optional
+import functools
+import logging
+from typing import Callable, TypeVar, ParamSpec
 
-import wrapt
+# Create a logger specific to your SDK
+logger = logging.getLogger("my_sdk")
 
-from .trace import telemetry
+P = ParamSpec("P")
+R = TypeVar("R")
 
-
-def _set_span_metadata(span, kind: str, name: str):
-    span.set_attribute("acme.span.kind", kind)
-    span.set_attribute("acme.span.name", name)
-
-
-def _create_decorator(span_kind: str):
-    def decorator(name: Optional[str] = None):
-
-        def _get_wrapper(func: Callable):
-            tracer = telemetry.tracer
-            span_name = name if isinstance(name, str) else func.__name__
-
-            @wrapt.decorator
-            async def async_wrapper(wrapped, args, kwargs):
-                with tracer.start_as_current_span(span_name) as span:
-                    _set_span_metadata(span, span_kind, span_name)
-                    return await wrapped(*args, **kwargs)
-
-            @wrapt.decorator
-            def sync_wrapper(wrapped, args, kwargs):
-                with tracer.start_as_current_span(span_name) as span:
-                    _set_span_metadata(span, span_kind, span_name)
-                    return wrapped(*args, **kwargs)
-
-            wrapper = async_wrapper if inspect.iscoroutinefunction(func) else sync_wrapper
-            return wrapper(func)
-
-        return _get_wrapper(name) if callable(name) else _get_wrapper
-
+def _create_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
+    def decorator(func: Callable[P, R]) -> Callable[P, R]:
+        @functools.wraps(func)
+        def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
+            # Using the logger instead of print
+            logger.info("Executing function: %s", func.__name__)
+            return func(*args, **kwargs)
+        return wrapper
     return decorator
 
-
-workflow = _create_decorator("workflow")
-task = _create_decorator("task")
-agent = _create_decorator("agent")
-tool = _create_decorator("tool")
+workflow = _create_decorator()

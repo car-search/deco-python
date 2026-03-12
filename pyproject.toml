@@ -122,6 +122,7 @@ filterwarnings = ["error"]
 # there are a couple of flags that are still disabled by
 # default in strict mode as they are experimental and niche.
 typeCheckingMode = "strict"
+reportMissingTypeStubs = false
 pythonVersion = "3.9"
 
 exclude = ["_dev", ".venv", ".nox", ".git"]
