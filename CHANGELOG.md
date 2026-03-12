@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0 (2026-03-12)
+
+Full Changelog: [v0.0.4...v0.1.0](https://github.com/car-search/deco-python/compare/v0.0.4...v0.1.0)
+
+### Features
+
+* **api:** manual updates ([ee37087](https://github.com/car-search/deco-python/commit/ee370872f05b3c1e81327a8b071aa9fa7b4e3d15))
+
 ## 0.0.4 (2026-03-11)
 
 Full Changelog: [v0.0.3...v0.0.4](https://github.com/car-search/deco-python/compare/v0.0.3...v0.0.4)
