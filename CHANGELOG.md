@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.3.0 (2026-03-27)
+
+Full Changelog: [v0.2.2...v0.3.0](https://github.com/car-search/deco-python/compare/v0.2.2...v0.3.0)
+
+### Features
+
+* **internal:** implement indices array format for query and form serialization ([6d54c7a](https://github.com/car-search/deco-python/commit/6d54c7a40f7be786588ddcf6325007b769849e56))
+
+
+### Bug Fixes
+
+* **deps:** bump minimum typing-extensions version ([382859d](https://github.com/car-search/deco-python/commit/382859d7fb00b020abe464c8bd4d7e3a5a58eb15))
+* **pydantic:** do not pass `by_alias` unless set ([95d1573](https://github.com/car-search/deco-python/commit/95d1573e68fcb4c17cb2b6182faefe66096eb598))
+* sanitize endpoint path params ([e5c6d35](https://github.com/car-search/deco-python/commit/e5c6d35ba82126175c751435cc220976db782c64))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([0b9ebc3](https://github.com/car-search/deco-python/commit/0b9ebc378909016f3b93c70b2be2b341f44c4938))
+* **internal:** tweak CI branches ([0a2e5a9](https://github.com/car-search/deco-python/commit/0a2e5a97189139b937428a6f90ca75f8cde87106))
+* **internal:** update gitignore ([21836bf](https://github.com/car-search/deco-python/commit/21836bfcb50169da473af6612a8886da22e997b0))
+
 ## 0.2.2 (2026-03-12)
 
 Full Changelog: [v0.2.1...v0.2.2](https://github.com/car-search/deco-python/compare/v0.2.1...v0.2.2)
