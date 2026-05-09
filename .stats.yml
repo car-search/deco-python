@@ -1,4 +1,4 @@
 configured_endpoints: 2
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/aia%2Fdeco-40b0704da0f2fd46f02c5385c8a3452f1cfc1523449a4d13ed0c2cfc894299c2.yml
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/aia/deco-ef6578a05260fd2c8cd3eac20f669a9ab0af6114ac6100d19111dd36bf3f01dd.yml
 openapi_spec_hash: 58e5baad33c04fd4d1ca224925cf26bb
 config_hash: 04b95417fd005b161644b361960f23e8
